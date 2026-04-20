@@ -763,7 +763,7 @@
   /* ── WHATSAPP ── */
   .whatsapp-btn {
     position: fixed;
-    bottom: 28px;
+    bottom: 100px;
     right: 28px;
     z-index: 200;
     width: 56px; height: 56px;
@@ -1343,6 +1343,9 @@
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.133.558 4.133 1.535 5.867L.057 23.43a.5.5 0 0 0 .614.614l5.563-1.478A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.02-1.38l-.36-.214-3.733.991.994-3.62-.235-.372A9.817 9.817 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
   </svg>
 </a>
+
+<!-- CRISP CHAT -->
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="da3b5b74-392e-4d90-975c-73a2ea79a66c";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
 </body>
 </html>
