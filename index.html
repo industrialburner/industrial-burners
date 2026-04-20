@@ -15,9 +15,11 @@
   // Step 4: Replace the three values below with your own IDs
   const EMAILJS_PUBLIC_KEY  = 'qHmslZ2G9Q0wjeBXB';
   const EMAILJS_SERVICE_ID  = 'service_i0olvlq';
-  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← paste your Template ID here
+  const EMAILJS_TEMPLATE_ID = 'template_czhmwhq';
 
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  window.addEventListener('load', function() {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  });
 </script>
 <style>
   :root {
@@ -1317,7 +1319,8 @@
     })
     .catch(err => {
       console.error('EmailJS error:', err);
-      showStatus('❌ Failed to send. Please email us directly at industrialburner.sales@gmail.com', '#FF4500', '#1a0800');
+      const errMsg = err?.text || err?.message || JSON.stringify(err);
+      showStatus('❌ Error: ' + errMsg, '#FF4500', '#1a0800');
       btn.disabled = false;
       btn.textContent = '⚡ Send Inquiry';
     });
