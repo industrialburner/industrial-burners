@@ -4,186 +4,1263 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Industrial Burner Solutions India</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body { margin:0; font-family:Arial; background:#f4f4f4; }
+  :root {
+    --fire: #FF4500;
+    --fire-glow: #FF6B00;
+    --gold: #C8963E;
+    --dark: #0A0A0A;
+    --dark-2: #111214;
+    --dark-3: #181A1E;
+    --dark-4: #1F2227;
+    --steel: #8A9BB0;
+    --steel-light: #B8C5D4;
+    --white: #F0F2F5;
+    --text-muted: #6B7A8D;
+  }
 
-/* HEADER */
-header {
-    background: linear-gradient(to right, #111, #333);
-    color:white;
-    text-align:center;
-    padding:60px 20px;
-}
-header h1 { margin:0; font-size:36px; }
-header p { margin:10px 0; }
-.btn {
-    background:#ff6600;
-    padding:12px 20px;
-    color:white;
-    text-decoration:none;
-    border-radius:5px;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* SECTION */
-section {
-    background:white;
-    margin:20px;
-    padding:30px;
-    border-radius:10px;
-}
+  html { scroll-behavior: smooth; }
 
-/* GRID */
-.grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap:20px;
-}
-.card {
-    background:#fafafa;
-    padding:20px;
-    border-radius:8px;
-    border:1px solid #ddd;
-}
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
 
-/* TABLE */
-table {
-    width:100%;
-    border-collapse:collapse;
-}
-td, th {
-    border:1px solid #ddd;
-    padding:10px;
-    text-align:left;
-}
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--fire); border-radius: 2px; }
 
-/* WHATSAPP */
-.whatsapp {
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    color:white;
-    padding:15px;
-    border-radius:50%;
-    font-size:20px;
-    text-decoration:none;
-}
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,69,0,0.12);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--fire); }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--fire); }
+  .nav-cta {
+    background: var(--fire);
+    color: white !important;
+    padding: 8px 22px;
+    border-radius: 3px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--fire-glow) !important; color: white !important; }
 
-/* FOOTER */
-footer {
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 120px 60px 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 60%, rgba(255,69,0,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 80% 80%, rgba(255,107,0,0.10) 0%, transparent 50%),
+      linear-gradient(160deg, #0A0A0A 0%, #0F1015 50%, #0A0A0A 100%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,69,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,69,0,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 70% 50%, black 30%, transparent 80%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,69,0,0.12);
+    border: 1px solid rgba(255,69,0,0.3);
+    padding: 6px 16px;
+    border-radius: 2px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fire);
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--fire);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--fire);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(20px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(54px, 8vw, 100px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--fire);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--steel-light);
+    max-width: 480px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--fire);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 3px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 0 30px rgba(255,69,0,0.3);
+  }
+  .btn-primary:hover {
+    background: var(--fire-glow);
+    box-shadow: 0 0 50px rgba(255,69,0,0.5);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--steel-light);
+    padding: 14px 32px;
+    border-radius: 3px;
+    border: 1px solid rgba(138,155,176,0.3);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--fire);
+    color: var(--fire);
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 2;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .stat-item {
+    text-align: right;
+    border-right: 2px solid var(--fire);
+    padding-right: 16px;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 100px 60px;
+  }
+  .section-alt {
+    background: var(--dark-2);
+  }
+
+  .section-header {
+    margin-bottom: 60px;
+  }
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--fire);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: 1px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .section-line {
+    width: 50px;
+    height: 2px;
+    background: var(--fire);
+    margin-top: 16px;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-text {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--steel-light);
+  }
+  .about-text p { margin-bottom: 20px; }
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .feature-pill {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px;
+    background: var(--dark-3);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .feature-pill:hover {
+    border-color: rgba(255,69,0,0.3);
+    transform: translateY(-2px);
+  }
+  .feature-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .feature-pill h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .feature-pill p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── PRODUCTS ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .product-card {
+    position: relative;
+    background: var(--dark-3);
+    padding: 44px 36px;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--fire);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .product-card:hover::before { transform: scaleX(1); }
+  .product-card:hover { background: var(--dark-4); }
+
+  .product-model {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--fire);
+    margin-bottom: 10px;
+  }
+  .product-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    letter-spacing: 1px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 28px;
+  }
+
+  .product-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .spec-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .spec-key {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .spec-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .product-eff {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eff-bar {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .eff-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--fire), var(--gold));
+    border-radius: 2px;
+  }
+  .eff-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--fire);
+    white-space: nowrap;
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 26px;
+    opacity: 0.15;
+    transition: opacity 0.3s;
+  }
+  .product-card:hover .product-badge { opacity: 0.4; }
+
+  /* ── SPECS TABLE ── */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead tr {
+    background: var(--fire);
+  }
+  thead th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    padding: 16px 24px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,69,0,0.05); }
+  tbody td {
+    padding: 18px 24px;
+    color: var(--steel-light);
+    vertical-align: middle;
+  }
+  tbody td:first-child {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--white);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── APPLICATIONS ── */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .app-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.25s;
+    cursor: default;
+  }
+  .app-card:hover {
+    background: var(--dark-4);
+    border-color: rgba(255,69,0,0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .app-icon { font-size: 28px; }
+  .app-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--white);
+  }
+  .app-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── WHY US ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+  }
+  .why-item {
+    background: var(--dark-3);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+  }
+  .why-item:hover { background: var(--dark-4); }
+  .why-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: rgba(255,69,0,0.08);
+    position: absolute;
+    bottom: -10px;
+    right: 16px;
+    line-height: 1;
+    transition: color 0.25s;
+  }
+  .why-item:hover .why-number { color: rgba(255,69,0,0.14); }
+  .why-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .why-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .why-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── SERVICES ── */
+  .services-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 28px;
+    background: var(--dark-3);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+    transition: all 0.25s;
+  }
+  .service-item:hover {
+    border-color: rgba(255,69,0,0.2);
+    background: var(--dark-4);
+  }
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--fire);
+    opacity: 0.6;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .service-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .service-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 100px 60px;
+    background: var(--dark-2);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 28px; }
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px;
+    background: var(--dark-3);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .contact-icon-wrap {
+    width: 44px; height: 44px;
+    background: rgba(255,69,0,0.12);
+    border: 1px solid rgba(255,69,0,0.2);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .contact-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fire);
+    margin-bottom: 4px;
+  }
+  .contact-value {
+    font-size: 15px;
+    color: var(--white);
+  }
+  .contact-value a { color: var(--white); text-decoration: none; }
+  .contact-value a:hover { color: var(--fire); }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .form-group label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--dark-3);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 3px;
+    padding: 13px 16px;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--fire); }
+  .form-group textarea { min-height: 110px; resize: vertical; }
+  .form-group select option { background: var(--dark-3); }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--fire);
+    color: white;
+    border: none;
+    padding: 15px 36px;
+    border-radius: 3px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 0 30px rgba(255,69,0,0.2);
+    align-self: flex-start;
+  }
+  .submit-btn:hover {
+    background: var(--fire-glow);
+    box-shadow: 0 0 50px rgba(255,69,0,0.4);
+    transform: translateY(-1px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--fire); }
+  .footer-text {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .footer-text a { color: var(--fire); text-decoration: none; }
+
+  /* ── WHATSAPP ── */
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+    transition: all 0.25s;
+    animation: float 3s ease-in-out infinite;
+  }
+  .whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 36px rgba(37,211,102,0.6);
+  }
+  .whatsapp-btn svg { width: 28px; height: 28px; fill: white; }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  .whatsapp-btn:hover { animation: none; transform: scale(1.1); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,69,0,0.3), transparent);
+    margin: 0 60px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-stats { display: none; }
+    .section { padding: 70px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .services-list { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-section { padding: 70px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 30px 24px; }
+    .divider { margin: 0 24px; }
+  }
 </style>
 </head>
-
 <body>
 
-<header>
-<h1>Industrial Burner Solutions</h1>
-<p>High Efficiency Gas, Diesel & Dual Fuel Burners</p>
-<p>Serving Textile, Boiler, Food & Chemical Industries</p>
-<a class="btn" href="mailto:industrialburner.sales@gmail.com">Request Quotation</a>
-</header>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>IBS</span> INDIA</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#specs">Specs</a></li>
+    <li><a href="#applications">Applications</a></li>
+    <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+  </ul>
+</nav>
 
-<section>
-<h2>About Company</h2>
-<p>
-We are suppliers of high-performance industrial burners designed for energy efficiency,
-stable combustion, and long-term reliability. Our solutions are widely used in boilers,
-drying systems, and industrial heating processes across India.
-</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Trusted Across India Since 2010</div>
+    <h1>Industrial<em>Burner</em>Solutions</h1>
+    <p class="hero-sub">High-efficiency gas, diesel &amp; dual-fuel combustion systems engineered for the textile, boiler, food &amp; chemical industries.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        ⚡ Request Quotation
+      </a>
+      <a href="#products" class="btn-secondary">
+        View Products →
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">93%</div>
+      <div class="stat-label">Peak Efficiency</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Installations</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+  </div>
 </section>
 
-<section>
-<h2>Our Products</h2>
-<div class="grid">
+<div class="divider"></div>
 
-<div class="card">
-<h3>IB-G100 Gas Burner</h3>
-<p><b>Capacity:</b> 100,000 kcal/hr</p>
-<p><b>Fuel:</b> LPG / PNG</p>
-<p><b>Efficiency:</b> 92%</p>
-<p><b>Use:</b> Small boilers, dryers</p>
-</div>
-
-<div class="card">
-<h3>IB-D200 Diesel Burner</h3>
-<p><b>Capacity:</b> 200,000 kcal/hr</p>
-<p><b>Fuel:</b> Diesel</p>
-<p><b>Efficiency:</b> 90%</p>
-<p><b>Use:</b> Medium industrial heating</p>
-</div>
-
-<div class="card">
-<h3>IB-DF300 Dual Fuel Burner</h3>
-<p><b>Capacity:</b> 300,000 kcal/hr</p>
-<p><b>Fuel:</b> LPG + Diesel</p>
-<p><b>Efficiency:</b> 93%</p>
-<p><b>Use:</b> Large plants & boilers</p>
-</div>
-
-</div>
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-header">
+        <div class="section-tag">Who We Are</div>
+        <h2 class="section-title">Built for India's Industrial Heart</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-text">
+        <p>We are a specialized supplier of high-performance industrial burners — engineered for energy efficiency, stable combustion, and long-term reliability in demanding environments across India.</p>
+        <p>From small boiler units to large chemical processing plants, our systems deliver consistent thermal performance backed by expert technical support and readily available spare parts nationwide.</p>
+      </div>
+    </div>
+    <div class="about-features">
+      <div class="feature-pill">
+        <span class="feature-icon">🔥</span>
+        <div>
+          <h4>High Efficiency</h4>
+          <p>Up to 93% thermal efficiency, reducing fuel costs significantly</p>
+        </div>
+      </div>
+      <div class="feature-pill">
+        <span class="feature-icon">🛡️</span>
+        <div>
+          <h4>Reliable Build</h4>
+          <p>Industrial-grade components rated for continuous operation</p>
+        </div>
+      </div>
+      <div class="feature-pill">
+        <span class="feature-icon">🔧</span>
+        <div>
+          <h4>Quick Support</h4>
+          <p>Fast installation support and troubleshooting services</p>
+        </div>
+      </div>
+      <div class="feature-pill">
+        <span class="feature-icon">🇮🇳</span>
+        <div>
+          <h4>Made for India</h4>
+          <p>Parts stocked across India for minimal downtime</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
-<h2>Technical Specifications</h2>
-<table>
-<tr><th>Model</th><th>Capacity</th><th>Fuel</th><th>Power</th><th>Application</th></tr>
-<tr><td>IB-G100</td><td>100,000 kcal/hr</td><td>LPG/PNG</td><td>220V</td><td>Dryers</td></tr>
-<tr><td>IB-D200</td><td>200,000 kcal/hr</td><td>Diesel</td><td>220V</td><td>Boilers</td></tr>
-<tr><td>IB-DF300</td><td>300,000 kcal/hr</td><td>Dual Fuel</td><td>380V</td><td>Industrial Plants</td></tr>
-</table>
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<section class="section section-alt" id="products">
+  <div class="section-header">
+    <div class="section-tag">Product Range</div>
+    <h2 class="section-title">Our Burner Systems</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-badge">⛽</div>
+      <div class="product-model">Model IB-G100</div>
+      <div class="product-name">Gas Burner</div>
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-key">Capacity</span>
+          <span class="spec-val">100,000 kcal/hr</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Fuel</span>
+          <span class="spec-val">LPG / PNG</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Application</span>
+          <span class="spec-val">Small boilers, dryers</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Power</span>
+          <span class="spec-val">220V</span>
+        </div>
+      </div>
+      <div class="product-eff">
+        <span class="spec-key" style="white-space:nowrap">Efficiency</span>
+        <div class="eff-bar"><div class="eff-fill" style="width:92%"></div></div>
+        <span class="eff-label">92%</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge">🛢️</div>
+      <div class="product-model">Model IB-D200</div>
+      <div class="product-name">Diesel Burner</div>
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-key">Capacity</span>
+          <span class="spec-val">200,000 kcal/hr</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Fuel</span>
+          <span class="spec-val">Diesel</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Application</span>
+          <span class="spec-val">Medium industrial heating</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Power</span>
+          <span class="spec-val">220V</span>
+        </div>
+      </div>
+      <div class="product-eff">
+        <span class="spec-key" style="white-space:nowrap">Efficiency</span>
+        <div class="eff-bar"><div class="eff-fill" style="width:90%"></div></div>
+        <span class="eff-label">90%</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge">⚡</div>
+      <div class="product-model">Model IB-DF300</div>
+      <div class="product-name">Dual Fuel Burner</div>
+      <div class="product-specs">
+        <div class="spec-row">
+          <span class="spec-key">Capacity</span>
+          <span class="spec-val">300,000 kcal/hr</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Fuel</span>
+          <span class="spec-val">LPG + Diesel</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Application</span>
+          <span class="spec-val">Large plants &amp; boilers</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Power</span>
+          <span class="spec-val">380V</span>
+        </div>
+      </div>
+      <div class="product-eff">
+        <span class="spec-key" style="white-space:nowrap">Efficiency</span>
+        <div class="eff-bar"><div class="eff-fill" style="width:93%"></div></div>
+        <span class="eff-label">93%</span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section>
-<h2>Applications</h2>
-<ul>
-<li>Textile Processing Units (Dyeing & Drying)</li>
-<li>Boiler Heating Systems</li>
-<li>Food Processing Industries</li>
-<li>Chemical & Rubber Plants</li>
-<li>Industrial Furnaces & Ovens</li>
-</ul>
+<div class="divider"></div>
+
+<!-- SPECS TABLE -->
+<section class="section" id="specs">
+  <div class="section-header">
+    <div class="section-tag">Technical Data</div>
+    <h2 class="section-title">Specifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Capacity (kcal/hr)</th>
+          <th>Fuel Type</th>
+          <th>Power Supply</th>
+          <th>Efficiency</th>
+          <th>Primary Application</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>IB-G100</td>
+          <td>100,000</td>
+          <td>LPG / PNG</td>
+          <td>220V</td>
+          <td>92%</td>
+          <td>Dryers, Small Boilers</td>
+        </tr>
+        <tr>
+          <td>IB-D200</td>
+          <td>200,000</td>
+          <td>Diesel</td>
+          <td>220V</td>
+          <td>90%</td>
+          <td>Industrial Boilers</td>
+        </tr>
+        <tr>
+          <td>IB-DF300</td>
+          <td>300,000</td>
+          <td>LPG + Diesel</td>
+          <td>380V</td>
+          <td>93%</td>
+          <td>Industrial Plants</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
-<section>
-<h2>Why Choose Us</h2>
-<ul>
-<li>High Fuel Efficiency → Reduce Operating Cost</li>
-<li>Stable Flame → Consistent Heating</li>
-<li>Quick Installation Support</li>
-<li>Spare Parts Availability in India</li>
-<li>Technical Guidance for Burner Selection</li>
-</ul>
+<div class="divider"></div>
+
+<!-- APPLICATIONS -->
+<section class="section section-alt" id="applications">
+  <div class="section-header">
+    <div class="section-tag">Industry Sectors</div>
+    <h2 class="section-title">Applications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="app-grid">
+    <div class="app-card">
+      <div class="app-icon">🧵</div>
+      <div class="app-title">Textile Processing</div>
+      <div class="app-desc">Dyeing machines, stenters, and drying systems in textile manufacturing units</div>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">🏭</div>
+      <div class="app-title">Boiler Heating</div>
+      <div class="app-desc">Steam boilers and hot water generation for large-scale industrial operations</div>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">🍽️</div>
+      <div class="app-title">Food Processing</div>
+      <div class="app-desc">Cooking, baking, and food drying applications requiring precise heat control</div>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">⚗️</div>
+      <div class="app-title">Chemical &amp; Rubber</div>
+      <div class="app-desc">Process heating and curing in chemical and rubber manufacturing plants</div>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">🔩</div>
+      <div class="app-title">Furnaces &amp; Ovens</div>
+      <div class="app-desc">Industrial furnaces, annealing ovens, and high-temperature heating chambers</div>
+    </div>
+  </div>
 </section>
 
-<section>
-<h2>Services</h2>
-<ul>
-<li>Burner Supply & Installation Support</li>
-<li>Site Inspection & Consultation</li>
-<li>Maintenance & Troubleshooting</li>
-<li>Customized Heating Solutions</li>
-</ul>
+<div class="divider"></div>
+
+<!-- WHY US -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-tag">Our Advantage</div>
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-number">01</div>
+      <span class="why-icon">💰</span>
+      <div class="why-title">Reduce Operating Cost</div>
+      <div class="why-desc">High fuel efficiency means lower energy bills without sacrificing output.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-number">02</div>
+      <span class="why-icon">🎯</span>
+      <div class="why-title">Stable Flame Control</div>
+      <div class="why-desc">Consistent combustion ensures uniform heating and predictable results.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-number">03</div>
+      <span class="why-icon">⚡</span>
+      <div class="why-title">Quick Installation</div>
+      <div class="why-desc">Our technicians ensure fast, professional commissioning at your site.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-number">04</div>
+      <span class="why-icon">🔩</span>
+      <div class="why-title">Spare Parts Availability</div>
+      <div class="why-desc">All critical spare parts stocked in India for minimal downtime.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-number">05</div>
+      <span class="why-icon">🧑‍🔧</span>
+      <div class="why-title">Expert Guidance</div>
+      <div class="why-desc">Technical support for selecting the right burner for your process needs.</div>
+    </div>
+  </div>
 </section>
 
-<section>
-<h2>Contact Us</h2>
-<p><b>Email:</b> industrialburner.sales@gmail.com</p>
-<p><b>Phone:</b> +91-9961650020</p>
-<p><b>Location:</b> Tamil Nadu, India</p>
-<a class="btn" href="mailto:industrialburner.sales@gmail.com">Send Inquiry</a>
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section class="section section-alt">
+  <div class="section-header">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="services-list">
+    <div class="service-item">
+      <div class="service-num">01</div>
+      <div>
+        <div class="service-title">Burner Supply &amp; Installation</div>
+        <div class="service-desc">Complete supply with on-site installation support and commissioning by trained engineers.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">02</div>
+      <div>
+        <div class="service-title">Site Inspection &amp; Consultation</div>
+        <div class="service-desc">Pre-installation site survey and process analysis to ensure optimal burner selection.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">03</div>
+      <div>
+        <div class="service-title">Maintenance &amp; Troubleshooting</div>
+        <div class="service-desc">Scheduled preventive maintenance and emergency troubleshooting to minimize downtime.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">04</div>
+      <div>
+        <div class="service-title">Customized Heating Solutions</div>
+        <div class="service-desc">Bespoke thermal system design for unique industrial heating and process requirements.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<a class="whatsapp" href="https://wa.me/91XXXXXXXXXX" target="_blank">💬</a>
+<div class="divider"></div>
 
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="section-header">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-title">Request a Quote</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon-wrap">📧</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:industrialburner.sales@gmail.com">industrialburner.sales@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-wrap">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">+91-XXXXXXXXXX</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-wrap">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Tamil Nadu, India</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label>Company</label>
+          <input type="text" placeholder="Company name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@company.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Interested Product</label>
+        <select>
+          <option value="">Select a burner model</option>
+          <option>IB-G100 Gas Burner</option>
+          <option>IB-D200 Diesel Burner</option>
+          <option>IB-DF300 Dual Fuel Burner</option>
+          <option>Custom / Not Sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Requirements / Message</label>
+        <textarea placeholder="Describe your application, capacity requirements, and any other details…"></textarea>
+      </div>
+      <button class="submit-btn" onclick="this.textContent='✓ Sent!';setTimeout(()=>this.textContent='⚡ Send Inquiry',2000)">
+        ⚡ Send Inquiry
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-<p>© 2026 Industrial Burner Solutions | All Rights Reserved</p>
+  <div class="footer-logo"><span>IBS</span> INDIA</div>
+  <div class="footer-text">© 2026 Industrial Burner Solutions. All Rights Reserved. | Tamil Nadu, India</div>
+  <div class="footer-text">
+    <a href="mailto:industrialburner.sales@gmail.com">industrialburner.sales@gmail.com</a>
+  </div>
 </footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp-btn" href="https://wa.me/91XXXXXXXXXX" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.133.558 4.133 1.535 5.867L.057 23.43a.5.5 0 0 0 .614.614l5.563-1.478A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.02-1.38l-.36-.214-3.733.991.994-3.62-.235-.372A9.817 9.817 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+  </svg>
+</a>
 
 </body>
 </html>
