@@ -640,6 +640,56 @@
     line-height: 1.6;
   }
 
+  /* ── FAQ ── */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-width: 860px;
+  }
+  .faq-item {
+    background: var(--dark-3);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-item.open { border-color: rgba(255,69,0,0.3); }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.3px;
+    gap: 16px;
+    user-select: none;
+  }
+  .faq-q:hover { color: var(--fire); }
+  .faq-icon {
+    font-size: 22px;
+    color: var(--fire);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    display: none;
+    padding: 0 24px 20px;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--steel-light);
+    line-height: 1.8;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 16px;
+  }
+  .faq-item.open .faq-a { display: block; }
+
   /* ── CONTACT ── */
   .contact-section {
     padding: 100px 60px;
@@ -978,8 +1028,8 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#products">Products</a></li>
-    <li><a href="#specs">Specs</a></li>
     <li><a href="#applications">Applications</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact" class="nav-cta">Get Quote</a></li>
   </ul>
   <!-- Hamburger button (mobile only) -->
@@ -992,8 +1042,8 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about"         onclick="closeMenu()">About</a>
   <a href="#products"      onclick="closeMenu()">Products</a>
-  <a href="#specs"         onclick="closeMenu()">Specs</a>
   <a href="#applications"  onclick="closeMenu()">Applications</a>
+  <a href="#faq"           onclick="closeMenu()">FAQ</a>
   <a href="#contact" class="mobile-cta" onclick="closeMenu()">Get Quote</a>
 </div>
 
@@ -1369,7 +1419,97 @@
 
 <div class="divider"></div>
 
-<!-- CONTACT -->
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-header">
+    <div class="section-tag">Common Questions</div>
+    <h2 class="section-title">FAQ</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>What is the warranty on your burners?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">All our burners come with a <strong>1-year warranty</strong> covering manufacturing defects and component failures. Extended warranty and Annual Maintenance Contracts (AMC) are available on request.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Do you ship across India?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Yes, we supply and ship to all states across India. We have experience delivering to Tamil Nadu, Kerala, Karnataka, Maharashtra, Gujarat, Rajasthan, and more. Delivery timelines depend on location and order size.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Do you provide installation support?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Yes. Our trained engineers provide full on-site installation, commissioning, and initial testing. We also conduct a site inspection before installation to ensure the right setup for your process.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>What fuel types do your burners support?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Our burners support <strong>LPG, PNG (Natural Gas), and Diesel</strong>. Several models support dual-fuel operation. We also supply infrared catalytic burners that are smokeless and flameless for sensitive environments.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Are spare parts available in India?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Yes. All critical spare parts — including igniters, solenoid valves, temperature controllers, pressure gauges, and ignition pins — are stocked in India for fast delivery and minimal downtime.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>How do I choose the right burner for my application?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Our technical team will help you select the right model based on your heat capacity requirement (Kcal/hr), fuel type, application (boiler, oven, dryer, etc.), and space constraints. Contact us via the form or WhatsApp for a free consultation.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>What industries do you serve?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">We serve a wide range of industries including <strong>textile processing, food baking &amp; drying, boiler heating, chemical &amp; rubber, poultry &amp; livestock, BBQ &amp; commercial cooking, powder coating, and industrial conveyor systems.</strong></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>How long does delivery take?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Standard orders are typically dispatched within <strong>3–7 working days</strong>. Custom or bulk orders may take longer. We will confirm the exact timeline after your order is placed.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Can I get a customized heating solution?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Absolutely. We design bespoke thermal systems for unique industrial requirements. Share your process details and we will engineer a solution tailored to your specific heating needs and budget.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>How can I get a price quote?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Fill in the <a href="#contact" style="color:var(--fire)">Request a Quote</a> form on this page, or contact us directly via WhatsApp at <strong>+91-9961650020</strong> or email at <strong>industrialburner.sales@gmail.com</strong>. We respond within 24 hours.</div>
+    </div>
+
+  </div>
+</section>
 <section class="contact-section" id="contact">
   <div class="contact-grid">
     <div>
@@ -1572,6 +1712,16 @@
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.133.558 4.133 1.535 5.867L.057 23.43a.5.5 0 0 0 .614.614l5.563-1.478A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.02-1.38l-.36-.214-3.733.991.994-3.62-.235-.372A9.817 9.817 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
   </svg>
 </a>
+
+<!-- FAQ SCRIPT -->
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 
 <!-- PRODUCT TABS SCRIPT -->
 <script>
