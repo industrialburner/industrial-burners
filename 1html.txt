@@ -809,15 +809,41 @@
   }
 
   /* ── PRODUCT CATEGORY TABS ── */
+  .cat-tabs-wrap {
+    position: relative;
+    margin-bottom: 36px;
+  }
+  .cat-tabs-wrap::after {
+    content: '›';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--fire);
+    background: linear-gradient(90deg, transparent, var(--dark-2) 60%);
+    pointer-events: none;
+    animation: nudge 1.5s ease-in-out infinite;
+    opacity: var(--arrow-opacity, 1);
+    transition: opacity 0.3s;
+  }
+  @keyframes nudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
   .cat-tabs {
     display: flex;
     flex-wrap: nowrap;
     gap: 8px;
-    margin-bottom: 36px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 4px;
+    padding-right: 48px;
   }
   .cat-tabs::-webkit-scrollbar { display: none; }
   .cat-tab {
@@ -1064,15 +1090,17 @@
   </div>
 
   <!-- Category Tabs -->
-  <div class="cat-tabs">
-    <button class="cat-tab active" onclick="showCat('industrial')">🔥 Industrial Ceramic</button>
-    <button class="cat-tab" onclick="showCat('bbq')">🍖 BBQ Series</button>
-    <button class="cat-tab" onclick="showCat('brooder')">🐣 Brooder / Heater</button>
-    <button class="cat-tab" onclick="showCat('portable')">🏕️ Portable Heater</button>
-    <button class="cat-tab" onclick="showCat('grill')">🔩 Portable Grill</button>
-    <button class="cat-tab" onclick="showCat('spray')">💨 Powder Spray</button>
-    <button class="cat-tab" onclick="showCat('conveyor')">⛓️ Chain Conveyor</button>
-    <button class="cat-tab" onclick="showCat('spare')">🔧 Spare Parts</button>
+  <div class="cat-tabs-wrap">
+    <div class="cat-tabs" id="catTabs">
+      <button class="cat-tab active" onclick="showCat('industrial')">🔥 Industrial Ceramic</button>
+      <button class="cat-tab" onclick="showCat('bbq')">🍖 BBQ Series</button>
+      <button class="cat-tab" onclick="showCat('brooder')">🐣 Brooder / Heater</button>
+      <button class="cat-tab" onclick="showCat('portable')">🏕️ Portable Heater</button>
+      <button class="cat-tab" onclick="showCat('grill')">🔩 Portable Grill</button>
+      <button class="cat-tab" onclick="showCat('spray')">💨 Powder Spray</button>
+      <button class="cat-tab" onclick="showCat('conveyor')">⛓️ Chain Conveyor</button>
+      <button class="cat-tab" onclick="showCat('spare')">🔧 Spare Parts</button>
+    </div>
   </div>
 
   <!-- INDUSTRIAL CERAMIC -->
@@ -1552,6 +1580,16 @@
     document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
     document.getElementById('cat-' + id).classList.add('active');
     event.target.classList.add('active');
+  }
+
+  // Hide scroll arrow when user reaches the end
+  const catTabs = document.getElementById('catTabs');
+  if (catTabs) {
+    catTabs.addEventListener('scroll', function() {
+      const wrap = catTabs.parentElement;
+      const atEnd = catTabs.scrollLeft + catTabs.clientWidth >= catTabs.scrollWidth - 10;
+      wrap.style.setProperty('--arrow-opacity', atEnd ? '0' : '1');
+    });
   }
 </script>
 
