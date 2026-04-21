@@ -9,14 +9,10 @@
 <meta name="author" content="Industrial Burner Solutions India">
 <meta name="robots" content="index, follow">
 
-<!-- Open Graph (WhatsApp / Facebook preview) -->
-<meta property="og:title" content="Industrial Burner Solutions India">
-<meta property="og:description" content="High-efficiency gas, diesel & dual-fuel burners for Indian industries. 15+ years experience. Tamil Nadu.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://industrialburner.github.io">
-
-<!-- Canonical -->
-<link rel="canonical" href="https://industrialburner.github.io">
+<!-- Backend API Configuration -->
+<script>
+  const BACKEND_API_URL = 'http://localhost:5000/api/quotes';
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
@@ -629,41 +625,54 @@
   .service-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: var(--white);
-    margin-bottom: 6px;
+<script>
+  function sendInquiry() {
+    const btn    = document.getElementById('submitBtn');
+    const status = document.getElementById('formStatus');
+    const name    = document.getElementById('from_name').value.trim();
+    const email   = document.getElementById('from_email').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const company = document.getElementById('company').value.trim();
+    const product = document.getElementById('product').value;
+    const message = document.getElementById('message').value.trim();
+    if (!name || !email || !phone) {
+      showStatus('⚠ Please fill in Name, Email and Phone.', '#C8963E', '#1a1500');
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = '⏳ Sending…';
+    status.style.display = 'none';
+    fetch(BACKEND_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ full_name: name, company: company, phone: phone, email: email, product: product, message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        showStatus('✅ Inquiry sent! We will contact you shortly.', '#22c55e', '#0a1a10');
+        btn.textContent = '✓ Sent!';
+        ['from_name','company','phone','from_email','message'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('product').selectedIndex = 0;
+        setTimeout(() => { btn.disabled = false; btn.textContent = '⚡ Send Inquiry'; }, 4000);
+      } else throw new Error(data.error || 'Failed');
+    })
+    .catch(err => {
+      console.error(err);
+      showStatus('❌ Error: ' + err.message, '#FF4500', '#1a0800');
+      btn.disabled = false;
+      btn.textContent = '⚡ Send Inquiry';
+    });
   }
-  .service-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.6;
+  function showStatus(msg, color, bg) {
+    const s = document.getElementById('formStatus');
+    s.textContent = msg;
+    s.style.display = 'block';
+    s.style.color = color;
+    s.style.background = bg;
+    s.style.border = '1px solid ' + color + '44';
   }
-
-  /* ── FAQ ── */
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    max-width: 860px;
-  }
-  .faq-item {
-    background: var(--dark-3);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 4px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .faq-item.open { border-color: rgba(255,69,0,0.3); }
-  .faq-q {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 24px;
-    cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 17px;
-    font-weight: 600;
+</script>
     color: var(--white);
     letter-spacing: 0.3px;
     gap: 16px;
