@@ -795,7 +795,61 @@
     margin: 0 60px;
   }
 
-  /* ── RESPONSIVE ── */
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 101;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,10,0.98);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    backdrop-filter: blur(20px);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--fire); }
+  .mobile-menu .mobile-cta {
+    background: var(--fire);
+    color: white !important;
+    padding: 14px 40px;
+    border-radius: 3px;
+    font-size: 28px;
+  }
+
+  @media (max-width: 900px) {
+    .hamburger { display: flex; }
+  }
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
@@ -825,7 +879,20 @@
     <li><a href="#applications">Applications</a></li>
     <li><a href="#contact" class="nav-cta">Get Quote</a></li>
   </ul>
+  <!-- Hamburger button (mobile only) -->
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about"         onclick="closeMenu()">About</a>
+  <a href="#products"      onclick="closeMenu()">Products</a>
+  <a href="#specs"         onclick="closeMenu()">Specs</a>
+  <a href="#applications"  onclick="closeMenu()">Applications</a>
+  <a href="#contact" class="mobile-cta" onclick="closeMenu()">Get Quote</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1343,6 +1410,20 @@
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.133.558 4.133 1.535 5.867L.057 23.43a.5.5 0 0 0 .614.614l5.563-1.478A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.02-1.38l-.36-.214-3.733.991.994-3.62-.235-.372A9.817 9.817 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
   </svg>
 </a>
+
+<!-- HAMBURGER MENU SCRIPT -->
+<script>
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
 
 <!-- CRISP CHAT -->
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="da3b5b74-392e-4d90-975c-73a2ea79a66c";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
