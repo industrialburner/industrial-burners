@@ -808,6 +808,39 @@
     margin: 0 60px;
   }
 
+  /* ── PRODUCT CATEGORY TABS ── */
+  .cat-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+  .cat-tab {
+    background: var(--dark-3);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--steel-light);
+    padding: 10px 18px;
+    border-radius: 3px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cat-tab:hover { border-color: var(--fire); color: var(--fire); }
+  .cat-tab.active { background: var(--fire); border-color: var(--fire); color: white; }
+  .cat-section { display: none; }
+  .cat-section.active { display: block; }
+  .cat-desc {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--steel-light);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 800px;
+  }
+
   .product-quote-btn {
     display: inline-flex;
     align-items: center;
@@ -1019,102 +1052,112 @@
 <section class="section section-alt" id="products">
   <div class="section-header">
     <div class="section-tag">Product Range</div>
-    <h2 class="section-title">Our Burner Systems</h2>
+    <h2 class="section-title">Our Product Catalogue</h2>
     <div class="section-line"></div>
   </div>
-  <div class="products-grid">
 
-    <div class="product-card">
-      <div class="product-badge">⛽</div>
-      <div class="product-model">Model IB-G100</div>
-      <div class="product-name">Gas Burner</div>
-      <div class="product-specs">
-        <div class="spec-row">
-          <span class="spec-key">Capacity</span>
-          <span class="spec-val">100,000 kcal/hr</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-key">Fuel</span>
-          <span class="spec-val">LPG / PNG</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-key">Application</span>
-          <span class="spec-val">Small boilers, dryers</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-key">Power</span>
-          <span class="spec-val">220V</span>
-        </div>
-      </div>
-      <div class="product-eff">
-        <span class="spec-key" style="white-space:nowrap">Efficiency</span>
-        <div class="eff-bar"><div class="eff-fill" style="width:92%"></div></div>
-        <span class="eff-label">92%</span>
-      </div>
-      <a href="#contact" onclick="selectProduct('IB-G100 Gas Burner')" class="product-quote-btn">⚡ Get Quote</a>
-    </div>
-
-    <div class="product-card">
-      <div class="product-badge">🛢️</div>
-      <div class="product-model">Model IB-D200</div>
-      <div class="product-name">Diesel Burner</div>
-      <div class="product-specs">
-        <div class="spec-row">
-          <span class="spec-key">Capacity</span>
-          <span class="spec-val">200,000 kcal/hr</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-key">Fuel</span>
-          <span class="spec-val">Diesel</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-key">Application</span>
-          <span class="spec-val">Medium industrial heating</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-key">Power</span>
-          <span class="spec-val">220V</span>
-        </div>
-      </div>
-      <div class="product-eff">
-        <span class="spec-key" style="white-space:nowrap">Efficiency</span>
-        <div class="eff-bar"><div class="eff-fill" style="width:90%"></div></div>
-        <span class="eff-label">90%</span>
-      </div>
-      <a href="#contact" onclick="selectProduct('IB-D200 Diesel Burner')" class="product-quote-btn">⚡ Get Quote</a>
-    </div>
-
-    <div class="product-card">
-      <div class="product-badge">⚡</div>
-      <div class="product-model">Model IB-DF300</div>
-      <div class="product-name">Dual Fuel Burner</div>
-      <div class="product-specs">
-        <div class="spec-row">
-          <span class="spec-key">Capacity</span>
-          <span class="spec-val">300,000 kcal/hr</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-key">Fuel</span>
-          <span class="spec-val">LPG + Diesel</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-key">Application</span>
-          <span class="spec-val">Large plants &amp; boilers</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-key">Power</span>
-          <span class="spec-val">380V</span>
-        </div>
-      </div>
-      <div class="product-eff">
-        <span class="spec-key" style="white-space:nowrap">Efficiency</span>
-        <div class="eff-bar"><div class="eff-fill" style="width:93%"></div></div>
-        <span class="eff-label">93%</span>
-      </div>
-      <a href="#contact" onclick="selectProduct('IB-DF300 Dual Fuel Burner')" class="product-quote-btn">⚡ Get Quote</a>
-    </div>
-
+  <!-- Category Tabs -->
+  <div class="cat-tabs">
+    <button class="cat-tab active" onclick="showCat('industrial')">🔥 Industrial Ceramic</button>
+    <button class="cat-tab" onclick="showCat('bbq')">🍖 BBQ Series</button>
+    <button class="cat-tab" onclick="showCat('brooder')">🐣 Brooder / Heater</button>
+    <button class="cat-tab" onclick="showCat('portable')">🏕️ Portable Heater</button>
+    <button class="cat-tab" onclick="showCat('grill')">🔩 Portable Grill</button>
+    <button class="cat-tab" onclick="showCat('spray')">💨 Powder Spray</button>
+    <button class="cat-tab" onclick="showCat('conveyor')">⛓️ Chain Conveyor</button>
+    <button class="cat-tab" onclick="showCat('spare')">🔧 Spare Parts</button>
   </div>
+
+  <!-- INDUSTRIAL CERAMIC -->
+  <div class="cat-section active" id="cat-industrial">
+    <div class="cat-desc">Industrial Ceramic Series Infrared Catalytic Gas Burners — ideal for painting curing, powder coating ovens, bakery machines, latex/rubber glove thermoforming, paper &amp; non-woven fabric drying.</div>
+    <div class="products-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="product-card"><div class="product-badge">🔥</div><div class="product-model">HD162 / HD162A</div><div class="product-name">Industrial Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">570×130×175 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">6.3 KW / 5400 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.49 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.45 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD162 Industrial Ceramic Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🔥</div><div class="product-model">HD242 / HD242A</div><div class="product-name">Industrial Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">840×130×175 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">9.4 KW / 8120 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.75 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.68 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD242 Industrial Ceramic Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🔥</div><div class="product-model">HD262 / HD262A</div><div class="product-name">Industrial Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">930×130×175 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">10.9 KW / 9360 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.8 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.74 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD262 Industrial Ceramic Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🔥</div><div class="product-model">HD61</div><div class="product-name">Industrial Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">423×80×94 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">2.4 KW / 2030 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.18 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.17 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD61 Industrial Ceramic Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🔥</div><div class="product-model">HD81</div><div class="product-name">Industrial Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">555×80×115 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">3.1 KW / 2700 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.24 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.22 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD81 Industrial Ceramic Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🔥</div><div class="product-model">HD82</div><div class="product-name">Industrial Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">200×164×108 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">3.1 KW / 2700 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.24 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.22 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD82 Industrial Ceramic Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🔥</div><div class="product-model">HD101</div><div class="product-name">Industrial Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">690×80×115 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">3.9 KW / 3380 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.3 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.28 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD101 Industrial Ceramic Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+    </div>
+  </div>
+
+  <!-- BBQ SERIES -->
+  <div class="cat-section" id="cat-bbq">
+    <div class="cat-desc">Barbecue Series Infrared Gas Burners — suitable for BBQ grills, shawarma machines, doner roasters, gas stoves, and heat-resistance glass cover applications.</div>
+    <div class="products-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="product-card"><div class="product-badge">🍖</div><div class="product-model">HD220</div><div class="product-name">BBQ Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">220×170×60 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">10,000 BTU/h / 2520 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.31 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.22 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD220 BBQ Series Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🍖</div><div class="product-model">HD538</div><div class="product-name">BBQ Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">538×85×65 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">13,500 BTU/h / 3400 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.42 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.30 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD538 BBQ Series Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🍖</div><div class="product-model">THD235</div><div class="product-name">BBQ Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">235×235×65 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">11,542 BTU/h / 2898 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.36 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.25 kg/h</span></div></div><a href="#contact" onclick="selectProduct('THD235 BBQ Series Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🍖</div><div class="product-model">THD310</div><div class="product-name">BBQ Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">310×310×80 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">20,160 BTU/h / 5080 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.62 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.44 kg/h</span></div></div><a href="#contact" onclick="selectProduct('THD310 BBQ Series Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🍖</div><div class="product-model">HD405</div><div class="product-name">BBQ Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">405×80×55 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">8,278 BTU/h / 2065 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.24 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.21 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD405 BBQ Series Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🍖</div><div class="product-model">HD170</div><div class="product-name">BBQ Burner</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">170×80×55 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">3,600 BTU/h / 910 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.11 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.08 kg/h</span></div></div><a href="#contact" onclick="selectProduct('HD170 BBQ Series Burner')" class="product-quote-btn">⚡ Get Quote</a></div>
+    </div>
+  </div>
+
+  <!-- BROODER / HEATER -->
+  <div class="cat-section" id="cat-brooder">
+    <div class="cat-desc">Infrared Catalytic Gas Brooder/Heater — smokeless &amp; flameless, saves 20%+ energy. Ideal for poultry houses, livestock farms, gardens, greenhouses, patios &amp; warehouses.</div>
+    <div class="products-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="product-card"><div class="product-badge">🐣</div><div class="product-model">THD2606 (Manual)</div><div class="product-name">Gas Brooder</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">320×270×130 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">2.46 KW / 2116 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.26 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.18 kg/h</span></div></div><a href="#contact" onclick="selectProduct('THD2606 Gas Brooder')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🐣</div><div class="product-model">THD2608 (Auto)</div><div class="product-name">Gas Brooder</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">320×270×130 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">2.46 KW / 2116 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.26 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.18 kg/h</span></div></div><a href="#contact" onclick="selectProduct('THD2608 Auto Gas Brooder')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🐣</div><div class="product-model">THD6806 (Manual)</div><div class="product-name">Gas Brooder</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">675×235×95 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">3.9 KW / 3400 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.39 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.27 kg/h</span></div></div><a href="#contact" onclick="selectProduct('THD6806 Gas Brooder')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🐣</div><div class="product-model">THD6808 (Auto)</div><div class="product-name">Gas Brooder</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">675×235×95 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">3.9 KW / 3400 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.39 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.27 kg/h</span></div></div><a href="#contact" onclick="selectProduct('THD6808 Auto Gas Brooder')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🐣</div><div class="product-model">THD5606 (Manual)</div><div class="product-name">Gas Brooder</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">500×500×180 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">2.46 KW / 2116 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.24 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.18 kg/h</span></div></div><a href="#contact" onclick="selectProduct('THD5606 Gas Brooder')" class="product-quote-btn">⚡ Get Quote</a></div>
+    </div>
+  </div>
+
+  <!-- PORTABLE HEATER -->
+  <div class="cat-section" id="cat-portable">
+    <div class="cat-desc">Portable Infrared Catalytic Gas Heaters — quiet, fast heating, small size, easy to carry. Saves 20%+ energy. For home &amp; outdoor use.</div>
+    <div class="products-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="product-card"><div class="product-badge">🏕️</div><div class="product-model">THD166</div><div class="product-name">Portable Heater</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">260×240×280 mm</span></div><div class="spec-row"><span class="spec-key">NG Heat Output</span><span class="spec-val">1960 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">LPG Heat Output</span><span class="spec-val">2116 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">1 kg</span></div></div><a href="#contact" onclick="selectProduct('THD166 Portable Gas Heater')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🏕️</div><div class="product-model">THD210</div><div class="product-name">Portable Heater</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">210×130×330 mm</span></div><div class="spec-row"><span class="spec-key">NG Heat Output</span><span class="spec-val">1960 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">LPG Heat Output</span><span class="spec-val">2116 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">2.2 kg</span></div></div><a href="#contact" onclick="selectProduct('THD210 Portable Gas Heater')" class="product-quote-btn">⚡ Get Quote</a></div>
+    </div>
+  </div>
+
+  <!-- PORTABLE GRILL -->
+  <div class="cat-section" id="cat-grill">
+    <div class="cat-desc">Portable Infrared Catalytic Gas Grill — smokeless &amp; flameless (CO≤80ppm), fast baking, long life ≥11,000 hrs. For commercial, home &amp; outdoor use.</div>
+    <div class="products-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="product-card"><div class="product-badge">🔩</div><div class="product-model">THD405</div><div class="product-name">Portable Gas Grill</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">480×320×230 mm</span></div><div class="spec-row"><span class="spec-key">Heat Output</span><span class="spec-val">3876 BTU/h / 3998 Kcal/hr</span></div><div class="spec-row"><span class="spec-key">NG Consumption</span><span class="spec-val">0.46 m³/h</span></div><div class="spec-row"><span class="spec-key">LPG Consumption</span><span class="spec-val">0.34 kg/h</span></div></div><a href="#contact" onclick="selectProduct('THD405 Portable Gas Grill')" class="product-quote-btn">⚡ Get Quote</a></div>
+    </div>
+  </div>
+
+  <!-- POWDER SPRAY -->
+  <div class="cat-section" id="cat-spray">
+    <div class="cat-desc">Electrostatic Powder Spray Machines — automatic current feedback, high powder utilization up to 95%, uniform &amp; smooth coating. 20-30% lower cost than solvent process.</div>
+    <div class="products-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="product-card"><div class="product-badge">💨</div><div class="product-model">THD601</div><div class="product-name">Powder Spray Machine</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">47×44×62 cm</span></div><div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">25 KG</span></div><div class="spec-row"><span class="spec-key">Input Power</span><span class="spec-val">50W / 110-220VAC</span></div><div class="spec-row"><span class="spec-key">Max Output</span><span class="spec-val">0-100KV | Hopper: 45L</span></div></div><a href="#contact" onclick="selectProduct('THD601 Powder Spray Machine')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">💨</div><div class="product-model">THD602</div><div class="product-name">Powder Spray Machine</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">47×44×62 cm</span></div><div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">25 KG</span></div><div class="spec-row"><span class="spec-key">Input Power</span><span class="spec-val">50W / 110-220VAC</span></div><div class="spec-row"><span class="spec-key">Max Output</span><span class="spec-val">0-100KV | Hopper: 45L</span></div></div><a href="#contact" onclick="selectProduct('THD602 Powder Spray Machine')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">💨</div><div class="product-model">THD801</div><div class="product-name">Powder Spray Machine</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">70×47.5×59 cm</span></div><div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">28 KG</span></div><div class="spec-row"><span class="spec-key">Input Power</span><span class="spec-val">50W / 110-220VAC</span></div><div class="spec-row"><span class="spec-key">Max Output</span><span class="spec-val">0-100KV | Hopper: 45L</span></div></div><a href="#contact" onclick="selectProduct('THD801 Powder Spray Machine')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">💨</div><div class="product-model">THD802</div><div class="product-name">Powder Spray Machine</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">70×47.5×59 cm</span></div><div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">28 KG</span></div><div class="spec-row"><span class="spec-key">Input Power</span><span class="spec-val">50W / 110-220VAC</span></div><div class="spec-row"><span class="spec-key">Max Output</span><span class="spec-val">0-100KV | Hopper: 45L</span></div></div><a href="#contact" onclick="selectProduct('THD802 Powder Spray Machine')" class="product-quote-btn">⚡ Get Quote</a></div>
+    </div>
+  </div>
+
+  <!-- CHAIN CONVEYOR -->
+  <div class="cat-section" id="cat-conveyor">
+    <div class="cat-desc">Overhead Suspension Chain Conveyor Systems — widely used for long-distance transport, floor lifting, aerial storage, feeding &amp; automated coating production lines.</div>
+    <div class="products-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="product-card"><div class="product-badge">⛓️</div><div class="product-model">UH-5075 Series</div><div class="product-name">Suspension Chain (5T)</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Suspension Spacing</span><span class="spec-val">150 mm</span></div><div class="spec-row"><span class="spec-key">Single-span Weight</span><span class="spec-val">≤35 – ≤50 kg</span></div><div class="spec-row"><span class="spec-key">Allowable Pull Force</span><span class="spec-val">≤3000 kgf</span></div><div class="spec-row"><span class="spec-key">Working Temp</span><span class="spec-val">≤250 – ≤400°C</span></div></div><a href="#contact" onclick="selectProduct('UH-5075 Suspension Chain Conveyor')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">⛓️</div><div class="product-model">QXG Series</div><div class="product-name">QXG Chain</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Chain Pitch</span><span class="spec-val">200/206 – 300 mm</span></div><div class="spec-row"><span class="spec-key">Single-span Weight</span><span class="spec-val">≤35 – ≤100 kg</span></div><div class="spec-row"><span class="spec-key">Allowable Pull Force</span><span class="spec-val">3 – 10 kN</span></div><div class="spec-row"><span class="spec-key">Working Temp</span><span class="spec-val">≤280°C</span></div></div><a href="#contact" onclick="selectProduct('QXG Series Chain Conveyor')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">⛓️</div><div class="product-model">X348 / X458 / X678</div><div class="product-name">Forged Chain</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Suspension Distance</span><span class="spec-val">76.2 – 160 mm</span></div><div class="spec-row"><span class="spec-key">Allowable Pull Force</span><span class="spec-val">110 – 400 kN</span></div><div class="spec-row"><span class="spec-key">Carriage Load</span><span class="spec-val">150 – 500 kg</span></div><div class="spec-row"><span class="spec-key">Working Temp</span><span class="spec-val">-20 to 200°C</span></div></div><a href="#contact" onclick="selectProduct('Forged Chain Conveyor')" class="product-quote-btn">⚡ Get Quote</a></div>
+    </div>
+  </div>
+
+  <!-- SPARE PARTS -->
+  <div class="cat-section" id="cat-spare">
+    <div class="cat-desc">Genuine Spare Parts — for auto-ignition, stable temperature control &amp; gas leakage protection. All parts stocked in India for minimal downtime.</div>
+    <div class="products-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="product-card"><div class="product-badge">⚡</div><div class="product-model">Ignition</div><div class="product-name">Electric Pulse Igniter</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Function</span><span class="spec-val">Auto-ignition control</span></div><div class="spec-row"><span class="spec-key">Compatible With</span><span class="spec-val">All burner series</span></div></div><a href="#contact" onclick="selectProduct('Electric Pulse Igniter')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🔩</div><div class="product-model">Ignition Pin</div><div class="product-name">Ignition Pin</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Function</span><span class="spec-val">Spark generation</span></div><div class="spec-row"><span class="spec-key">Compatible With</span><span class="spec-val">All burner series</span></div></div><a href="#contact" onclick="selectProduct('Ignition Pin')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🛡️</div><div class="product-model">Solenoid Valve</div><div class="product-name">Solenoid Valve</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Function</span><span class="spec-val">Gas leakage protection</span></div><div class="spec-row"><span class="spec-key">Voltage</span><span class="spec-val">AC 220V</span></div></div><a href="#contact" onclick="selectProduct('Solenoid Valve')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">🌡️</div><div class="product-model">Temperature Controller</div><div class="product-name">Temperature Controller</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Function</span><span class="spec-val">Stable temp control</span></div><div class="spec-row"><span class="spec-key">Compatible With</span><span class="spec-val">All burner series</span></div></div><a href="#contact" onclick="selectProduct('Temperature Controller')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">⚙️</div><div class="product-model">Pressure Reducing Valve</div><div class="product-name">Pressure Reducing Valve</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Function</span><span class="spec-val">Gas pressure regulation</span></div><div class="spec-row"><span class="spec-key">Compatible With</span><span class="spec-val">All burner series</span></div></div><a href="#contact" onclick="selectProduct('Pressure Reducing Valve')" class="product-quote-btn">⚡ Get Quote</a></div>
+      <div class="product-card"><div class="product-badge">📊</div><div class="product-model">Capsule Pressure Gauge</div><div class="product-name">Pressure Gauge</div><div class="product-specs"><div class="spec-row"><span class="spec-key">Function</span><span class="spec-val">Gas pressure monitoring</span></div><div class="spec-row"><span class="spec-key">Compatible With</span><span class="spec-val">All burner series</span></div></div><a href="#contact" onclick="selectProduct('Capsule Pressure Gauge')" class="product-quote-btn">⚡ Get Quote</a></div>
+    </div>
+  </div>
+
 </section>
 
 <div class="divider"></div>
@@ -1131,38 +1174,37 @@
       <thead>
         <tr>
           <th>Model</th>
-          <th>Capacity (kcal/hr)</th>
-          <th>Fuel Type</th>
-          <th>Power Supply</th>
-          <th>Efficiency</th>
-          <th>Primary Application</th>
+          <th>Dimension (mm)</th>
+          <th>Heat Output (Kcal/hr)</th>
+          <th>NG (m³/h)</th>
+          <th>LPG (kg/h)</th>
+          <th>Application</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>IB-G100</td>
-          <td>100,000</td>
-          <td>LPG / PNG</td>
-          <td>220V</td>
-          <td>92%</td>
-          <td>Dryers, Small Boilers</td>
-        </tr>
-        <tr>
-          <td>IB-D200</td>
-          <td>200,000</td>
-          <td>Diesel</td>
-          <td>220V</td>
-          <td>90%</td>
-          <td>Industrial Boilers</td>
-        </tr>
-        <tr>
-          <td>IB-DF300</td>
-          <td>300,000</td>
-          <td>LPG + Diesel</td>
-          <td>380V</td>
-          <td>93%</td>
-          <td>Industrial Plants</td>
-        </tr>
+        <tr><td colspan="6" style="background:rgba(255,69,0,0.1);color:var(--fire);font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;font-size:12px;text-transform:uppercase;">Industrial Ceramic Series</td></tr>
+        <tr><td>HD162/HD162A</td><td>570×130×175</td><td>5,400</td><td>0.49</td><td>0.45</td><td>Painting curing, powder coating, bakery</td></tr>
+        <tr><td>HD242/HD242A</td><td>840×130×175</td><td>8,120</td><td>0.75</td><td>0.68</td><td>Painting curing, powder coating, bakery</td></tr>
+        <tr><td>HD262/HD262A</td><td>930×130×175</td><td>9,360</td><td>0.80</td><td>0.74</td><td>Painting curing, powder coating, bakery</td></tr>
+        <tr><td>HD61</td><td>423×80×94</td><td>2,030</td><td>0.18</td><td>0.17</td><td>Paper, non-woven fabric drying</td></tr>
+        <tr><td>HD81</td><td>555×80×115</td><td>2,700</td><td>0.24</td><td>0.22</td><td>Paper, non-woven fabric drying</td></tr>
+        <tr><td>HD82</td><td>200×164×108</td><td>2,700</td><td>0.24</td><td>0.22</td><td>Latex/rubber glove thermoforming</td></tr>
+        <tr><td>HD101</td><td>690×80×115</td><td>3,380</td><td>0.30</td><td>0.28</td><td>Paper, non-woven fabric drying</td></tr>
+        <tr><td colspan="6" style="background:rgba(255,69,0,0.1);color:var(--fire);font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;font-size:12px;text-transform:uppercase;">BBQ Series</td></tr>
+        <tr><td>HD220</td><td>220×170×60</td><td>2,520</td><td>0.31</td><td>0.22</td><td>BBQ grill, shawarma machine</td></tr>
+        <tr><td>HD538</td><td>538×85×65</td><td>3,400</td><td>0.42</td><td>0.30</td><td>BBQ grill, doner roaster</td></tr>
+        <tr><td>THD235</td><td>235×235×65</td><td>2,898</td><td>0.36</td><td>0.25</td><td>Gas stove, BBQ grill</td></tr>
+        <tr><td>THD310</td><td>310×310×80</td><td>5,080</td><td>0.62</td><td>0.44</td><td>Heat-resistance glass cover</td></tr>
+        <tr><td>HD405</td><td>405×80×55</td><td>2,065</td><td>0.24</td><td>0.21</td><td>BBQ grill, shawarma machine</td></tr>
+        <tr><td>HD170</td><td>170×80×55</td><td>910</td><td>0.11</td><td>0.08</td><td>BBQ grill, gas stove</td></tr>
+        <tr><td colspan="6" style="background:rgba(255,69,0,0.1);color:var(--fire);font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;font-size:12px;text-transform:uppercase;">Brooder / Heater Series</td></tr>
+        <tr><td>THD2606/2608</td><td>320×270×130</td><td>2,116</td><td>0.26</td><td>0.18</td><td>Poultry house, livestock farm</td></tr>
+        <tr><td>THD6806/6808</td><td>675×235×95</td><td>3,400</td><td>0.39</td><td>0.27</td><td>Greenhouse, warehouse, patio</td></tr>
+        <tr><td>THD5606</td><td>500×500×180</td><td>2,116</td><td>0.24</td><td>0.18</td><td>Poultry house, livestock farm</td></tr>
+        <tr><td colspan="6" style="background:rgba(255,69,0,0.1);color:var(--fire);font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;font-size:12px;text-transform:uppercase;">Portable Series</td></tr>
+        <tr><td>THD166</td><td>260×240×280</td><td>2,116 (LPG)</td><td>0.24</td><td>0.18</td><td>Home, outdoor</td></tr>
+        <tr><td>THD210</td><td>210×130×330</td><td>2,116 (LPG)</td><td>0.24</td><td>0.18</td><td>Home, outdoor</td></tr>
+        <tr><td>THD405 (Grill)</td><td>480×320×230</td><td>3,998</td><td>0.46</td><td>0.34</td><td>Commercial, home, outdoor</td></tr>
       </tbody>
     </table>
   </div>
@@ -1350,11 +1392,56 @@
       <div class="form-group">
         <label>Interested Product</label>
         <select id="product">
-          <option value="">Select a burner model</option>
-          <option>IB-G100 Gas Burner</option>
-          <option>IB-D200 Diesel Burner</option>
-          <option>IB-DF300 Dual Fuel Burner</option>
-          <option>Custom / Not Sure</option>
+          <option value="">Select a product</option>
+          <optgroup label="Industrial Ceramic Series">
+            <option>HD162 / HD162A Industrial Burner</option>
+            <option>HD242 / HD242A Industrial Burner</option>
+            <option>HD262 / HD262A Industrial Burner</option>
+            <option>HD61 Industrial Burner</option>
+            <option>HD81 Industrial Burner</option>
+            <option>HD82 Industrial Burner</option>
+            <option>HD101 Industrial Burner</option>
+          </optgroup>
+          <optgroup label="BBQ Series">
+            <option>HD220 BBQ Burner</option>
+            <option>HD538 BBQ Burner</option>
+            <option>THD235 BBQ Burner</option>
+            <option>THD310 BBQ Burner</option>
+            <option>HD405 BBQ Burner</option>
+            <option>HD170 BBQ Burner</option>
+          </optgroup>
+          <optgroup label="Brooder / Heater">
+            <option>THD2606 Gas Brooder (Manual)</option>
+            <option>THD2608 Gas Brooder (Auto)</option>
+            <option>THD6806 Gas Brooder (Manual)</option>
+            <option>THD6808 Gas Brooder (Auto)</option>
+            <option>THD5606 Gas Brooder (Manual)</option>
+          </optgroup>
+          <optgroup label="Portable Series">
+            <option>THD166 Portable Gas Heater</option>
+            <option>THD210 Portable Gas Heater</option>
+            <option>THD405 Portable Gas Grill</option>
+          </optgroup>
+          <optgroup label="Powder Spray Machines">
+            <option>THD601 Powder Spray Machine</option>
+            <option>THD602 Powder Spray Machine</option>
+            <option>THD801 Powder Spray Machine</option>
+            <option>THD802 Powder Spray Machine</option>
+          </optgroup>
+          <optgroup label="Chain Conveyor">
+            <option>UH-5075 Suspension Chain Conveyor</option>
+            <option>QXG Series Chain Conveyor</option>
+            <option>Forged Chain (X348/X458/X678)</option>
+          </optgroup>
+          <optgroup label="Spare Parts">
+            <option>Electric Pulse Igniter</option>
+            <option>Ignition Pin</option>
+            <option>Solenoid Valve</option>
+            <option>Temperature Controller</option>
+            <option>Pressure Reducing Valve</option>
+            <option>Capsule Pressure Gauge</option>
+          </optgroup>
+          <option value="Custom / Not Sure">Custom / Not Sure</option>
         </select>
       </div>
       <div class="form-group">
@@ -1450,6 +1537,16 @@
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.133.558 4.133 1.535 5.867L.057 23.43a.5.5 0 0 0 .614.614l5.563-1.478A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.02-1.38l-.36-.214-3.733.991.994-3.62-.235-.372A9.817 9.817 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
   </svg>
 </a>
+
+<!-- PRODUCT TABS SCRIPT -->
+<script>
+  function showCat(id) {
+    document.querySelectorAll('.cat-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('cat-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
 
 <!-- PRODUCT QUOTE SCRIPT -->
 <script>
